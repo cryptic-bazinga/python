@@ -7,6 +7,9 @@
             const outputElement = document.getElementById("output-item");
             const rerollButton = document.getElementById("reroll-button");
             const profitsElement = document.getElementById("profits-counter");
+            const startAudio = document.getElementById("start-audio"); // Get audio element
+            const awAudio = document.getElementById("aw-audio"); // Get aw.mp3 audio element
+            const winAudio = document.getElementById("win-audio"); // Get win.mp3 audio element
             rerollButton.style.display = "none"; // Hide the button initially
 
             function displayOutput(output, profits) {
@@ -22,6 +25,20 @@
                         if (typeof profits !== "undefined") {
                             profitsElement.textContent = "Current Profits: " + profits;
                         }
+                        // Play win.mp3 if last output is "JACKPOT!!!"
+                        if (output.length > 0 && output[output.length - 1] === "JACKPOT!!!") {
+                            if (winAudio) {
+                                winAudio.currentTime = 0;
+                                winAudio.play();
+                            }
+                        }
+                        // Play aw.mp3 if last output is "no jackpot :("
+                        else if (output.length > 0 && output[output.length - 1] === "no jackpot :(") {
+                            if (awAudio) {
+                                awAudio.currentTime = 0;
+                                awAudio.play();
+                            }
+                        }
                     }
                 }
 
@@ -30,6 +47,10 @@
 
             rerollButton.addEventListener("click", function() {
                 rerollButton.style.display = "none";
+                if (startAudio) {
+                    startAudio.currentTime = 0;
+                    startAudio.play();
+                }
                 fetch('/reroll')
                     .then(response => response.json())
                     .then(data => displayOutput(data.output, data.profits));
@@ -48,6 +69,9 @@
     <h1>Results</h1>
     <h1 id="output-item"></h1> <!-- Display only the most recent number -->
     <button id="reroll-button">Reroll</button>
+    <audio id="start-audio" src="{{ url_for('static', filename='audio/start.mp3') }}"></audio>
+    <audio id="aw-audio" src="{{ url_for('static', filename='audio/aw.mp3') }}"></audio>
+    <audio id="win-audio" src="{{ url_for('static', filename='audio/win.mp3') }}"></audio>
 </body>
 <style>
     button {

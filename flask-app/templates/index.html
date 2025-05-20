@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LETS GO GAMBLING</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const outputElement = document.getElementById("output-item");
+            const rerollButton = document.getElementById("reroll-button");
+            const profitsElement = document.getElementById("profits-counter");
+            rerollButton.style.display = "none"; // Hide the button initially
+
+            function displayOutput(output, profits) {
+                let index = 0;
+
+                function displayNext() {
+                    if (index < output.length) {
+                        outputElement.textContent = output[index];
+                        index++;
+                        setTimeout(displayNext, 100);
+                    } else {
+                        rerollButton.style.display = "block";
+                        if (typeof profits !== "undefined") {
+                            profitsElement.textContent = "Current Profits: " + profits;
+                        }
+                    }
+                }
+
+                displayNext();
+            }
+
+            rerollButton.addEventListener("click", function() {
+                rerollButton.style.display = "none";
+                fetch('/reroll')
+                    .then(response => response.json())
+                    .then(data => displayOutput(data.output, data.profits));
+            });
+
+            // Initial output rendering
+            const initialOutput = {{ output | tojson }};
+            const initialProfits = {{ profits }};
+            profitsElement.textContent = "Current Profits: " + initialProfits;
+            displayOutput(initialOutput, initialProfits);
+        });
+    </script>
+</head>
+<body>
+    <h2 id="profits-counter"></h2>
+    <h1>Results</h1>
+    <p id="output-item"></p> <!-- Display only the most recent number -->
+    <button id="reroll-button">Reroll</button>
+</body>
+<style>
+    button {
+display: block;
+margin: 0 auto;
+}
+    body {
+        background-image: url("{{ url_for('static', filename='images/casino_01.jpg') }}");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+        color: white;
+        text-align: center;
+    }
+
+</style>
+</html>

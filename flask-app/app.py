@@ -28,7 +28,7 @@ def roll_numbers(profits):
             if chance == 1:
                 output.append(f"{rolled}")
                 output.append("JACKPOT!!!")
-                profits += 1000  # Gain 1000 profit for jackpot
+                profits += 1100  # Gain 1000 profit for jackpot (accounting for initial 100) 
                 jackpot_hit = True
                 break
             else:

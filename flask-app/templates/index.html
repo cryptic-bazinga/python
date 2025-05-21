@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>LETS GO GAMBLING</title>
-    <script>
+    <script> // good luck
         document.addEventListener("DOMContentLoaded", function() {
             const outputElement = document.getElementById("output-item");
             const rerollButton = document.getElementById("reroll-button");
@@ -65,6 +65,10 @@
     </script>
 </head>
 <body>
+    <div class="Felement">
+        <p>this project is open source find the github</p>
+        <a href="https://github.com/cryptic-bazinga/python"target="_blank">here</a>
+    </div>
     <h2 id="profits-counter"></h2>
     <h1>Results</h1>
     <h1 id="output-item"></h1> <!-- Display only the most recent number -->
@@ -75,6 +79,14 @@
     <audio id="win-audio" src="{{ url_for('static', filename='audio/win.mp3') }}"></audio>
 </body>
 <style>
+    .Felement {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 1px;
+            background-color: transparent;
+            color: #fff;
+        }
     button {
 display: block;
 margin: 0 auto;

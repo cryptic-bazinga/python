@@ -10,6 +10,8 @@ flask-app
 ├── templates
 │   └── index.html       # HTML template for rendering the output
 ├── static
+|   |── images           # Holds images for the app
+|   |── audio            # Holds audio for the app
 │   ├── css              # Directory for CSS files
 │   └── js               # Directory for JavaScript files
 ├── requirements.txt      # Lists dependencies for the project

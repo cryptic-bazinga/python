@@ -1,7 +1,8 @@
 # Flask Jackpot Game
 
 This project is a simple Flask web application that simulates a jackpot game. Users can visit the web application, and the server will randomly determine if they win a jackpot based on a rolling mechanism.
-
+## NOTICE ##
+if you wish to fork this project and upload it as your own do not remove any signitures of the code 
 ## Project Structure
 
 ```

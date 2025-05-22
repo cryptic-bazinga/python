@@ -23,6 +23,7 @@ def roll_numbers(profits):
         "one more roll and your kid doesn't go to college",
         "you should probably stop now",
         "damn you suck at this..."
+        "i can tell your nose is blocking the screen, you jew."
     ]
     for x in range(0, 50):
         rolled = rolled - random.randint(0, 10)

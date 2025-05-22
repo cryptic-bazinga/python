@@ -9,12 +9,27 @@ def roll_numbers(profits):
     output = []
     consecutive_under_zero = 0
     jackpot_hit = False
+    quips = [
+        "Better luck next time!",
+        "No jackpot for you!",
+        "Try again, maybe you'll win!",
+        "So close, yet so far!",
+        "STOP GAMBLING!",
+        "just stop at this point",
+        "you should probably stop now",
+        "and another and another and another...",
+        "99% of gamblers quit before they hit the jackpot",
+        "You know, the odds are against you",
+        "one more roll and your kid doesn't go to college",
+        "you should probably stop now",
+        "damn you suck at this..."
+    ]
     for x in range(0, 50):
         rolled = rolled - random.randint(0, 10)
         if rolled < 0:
             consecutive_under_zero += 1
             if consecutive_under_zero == 5:
-                output.append("no jackpot :(")
+                output.append(random.choice(quips))
                 return output, profits
             chance = random.randint(0, 1)
             if chance == 1:
@@ -24,7 +39,7 @@ def roll_numbers(profits):
         else:
             consecutive_under_zero = 0
         if rolled == 5:
-            chance = random.randint(0, 2)
+            chance = random.randint(0, 4)
             if chance == 1:
                 output.append(f"{rolled}")
                 output.append("JACKPOT!!!")
@@ -35,7 +50,7 @@ def roll_numbers(profits):
                 break
         output.append(f"{rolled}")
     if not jackpot_hit:
-        output.append("no jackpot :(")
+        output.append(random.choice(quips))
     return output, profits
 
 @app.route('/')
